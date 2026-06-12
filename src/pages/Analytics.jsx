@@ -372,8 +372,6 @@ const Analytics = () => {
         </Col>
 
       </Row>
-
-      {/* Table */}
       <Row>
 
         <Col lg={12}>

@@ -27,13 +27,10 @@ const Orders = () => {
     const matchesStatus = !statusFilter || order.status === statusFilter;
     return matchesSearch && matchesStatus;
   });
-
-  // Pagination
   const indexOfLastOrder = currentPage * ordersPerPage;
   const indexOfFirstOrder = indexOfLastOrder - ordersPerPage;
   const currentOrders = filteredOrders.slice(indexOfFirstOrder, indexOfLastOrder);
   const totalPages = Math.ceil(filteredOrders.length / ordersPerPage);
-
   const getStatusBadge = (status) => {
     const variants = {
       delivered: 'success',
@@ -43,11 +40,9 @@ const Orders = () => {
     };
     return <Badge bg={variants[status]}>{status}</Badge>;
   };
-
   return (
     <Container>
       <h2 className="mb-4">Order Management</h2>
-      
       <Card className="shadow-sm mb-4">
         <Card.Body>
           <Row>
@@ -61,11 +56,9 @@ const Orders = () => {
                     value={searchTerm}
                     onChange={(e) => setSearchTerm(e.target.value)}
                   />
-                  
                 </div>
               </Form.Group>
             </Col>
-            
             <Col md={4}>
               <Form.Group>
                 <Form.Label>Filter by Status</Form.Label>
@@ -81,7 +74,6 @@ const Orders = () => {
                 </Form.Select>
               </Form.Group>
             </Col>
-            
             <Col md={2} className="d-flex align-items-end">
               <Button 
                 variant="outline-secondary" 
@@ -96,7 +88,6 @@ const Orders = () => {
           </Row>
         </Card.Body>
       </Card>
-      
       <Card className="shadow-sm">
         <div className="table-responsive">
           <Table hover className="mb-0">
@@ -126,13 +117,11 @@ const Orders = () => {
             </tbody>
           </Table>
         </div>
-        
         {filteredOrders.length === 0 && (
           <div className="text-center p-5">
             <p className="text-muted">No orders found</p>
           </div>
-        )}
-        
+        )} 
         {totalPages > 1 && (
           <div className="d-flex justify-content-center p-3">
             <Pagination>

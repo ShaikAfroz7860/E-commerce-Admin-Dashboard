@@ -6,15 +6,12 @@ import TopNavbar from './Navbar';
 
 const PrivateRoute = ({ children }) => {
   const { user, loading } = useAuth();
-
   if (loading) {
     return <div className="spinner-container">Loading...</div>;
   }
-
   if (!user) {
     return <Navigate to="/login" replace />;
   }
-
   return (
     <div className="main-layout">
       <Sidebar />

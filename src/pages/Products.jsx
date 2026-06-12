@@ -18,7 +18,6 @@ const Products = () => {
   const productsPerPage = 12;
 
   useEffect(() => {
-    // Load products from localStorage first
     const storedProducts = localStorage.getItem('adminProducts');
     if (storedProducts) {
       setProducts(JSON.parse(storedProducts));
@@ -35,7 +34,6 @@ const Products = () => {
     showSuccess('Product deleted');
   };
 
-  // Filter products
   const filteredProducts = products.filter(product => {
     const matchesSearch = product.title?.toLowerCase().includes(searchTerm.toLowerCase()) ||
                          product.description?.toLowerCase().includes(searchTerm.toLowerCase());
@@ -44,13 +42,10 @@ const Products = () => {
     return matchesSearch && matchesCategory && matchesPrice;
   });
 
-  // Pagination
   const indexOfLastProduct = currentPage * productsPerPage;
   const indexOfFirstProduct = indexOfLastProduct - productsPerPage;
   const currentProducts = filteredProducts.slice(indexOfFirstProduct, indexOfLastProduct);
   const totalPages = Math.ceil(filteredProducts.length / productsPerPage);
-
-  // Get unique categories
   const categories = [...new Set(products.map(p => p.category))];
 
   if (loading) return <Loader />;
@@ -74,8 +69,7 @@ const Products = () => {
               onChange={(e) => setSearchTerm(e.target.value)}
             />
           </InputGroup>
-        </Col>
-        
+        </Col>        
         <Col md={3}>
           <Form.Select value={category} onChange={(e) => setCategory(e.target.value)}>
             <option value="">All Categories</option>
@@ -84,7 +78,6 @@ const Products = () => {
             ))}
           </Form.Select>
         </Col>
-        
         <Col md={3}>
           <Form.Label>Max Price: ${priceRange}</Form.Label>
           <Form.Range
@@ -94,7 +87,6 @@ const Products = () => {
             onChange={(e) => setPriceRange(Number(e.target.value))}
           />
         </Col>
-        
         <Col md={2}>
           <Button variant="outline-secondary" onClick={() => {
             setSearchTerm('');
@@ -105,7 +97,6 @@ const Products = () => {
           </Button>
         </Col>
       </Row>
-      
       {/* Product Count */}
       <div className="mb-3">
         <small className="text-muted">
@@ -121,14 +112,12 @@ const Products = () => {
           </Col>
         ))}
       </Row>
-      
       {/* Pagination */}
       {totalPages > 1 && (
         <div className="d-flex justify-content-center mt-4">
           <Pagination>
             <Pagination.First onClick={() => setCurrentPage(1)} disabled={currentPage === 1} />
             <Pagination.Prev onClick={() => setCurrentPage(currentPage - 1)} disabled={currentPage === 1} />
-            
             {[...Array(totalPages).keys()].slice(
               Math.max(0, currentPage - 3),
               Math.min(totalPages, currentPage + 2)
@@ -141,7 +130,6 @@ const Products = () => {
                 {number + 1}
               </Pagination.Item>
             ))}
-            
             <Pagination.Next onClick={() => setCurrentPage(currentPage + 1)} disabled={currentPage === totalPages} />
             <Pagination.Last onClick={() => setCurrentPage(totalPages)} disabled={currentPage === totalPages} />
           </Pagination>
@@ -150,5 +138,4 @@ const Products = () => {
     </div>
   );
 };
-
 export default Products;

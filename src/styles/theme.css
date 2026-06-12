@@ -1,0 +1,108 @@
+/* Light Theme */
+:root {
+  --bg-primary: #f8f9fa;
+  --bg-secondary: #ffffff;
+  --text-primary: #212529;
+  --text-secondary: #6c757d;
+  --border-color: #dee2e6;
+  --card-bg: #ffffff;
+  --card-border: #dee2e6;
+  --sidebar-bg: #ffffff;
+  --sidebar-text: #212529;
+  --sidebar-hover: #f8f9fa;
+  --sidebar-active: #0d6efd;
+  --primary: #0d6efd;
+  --primary-dark: #0a58ca;
+  --danger: #dc3545;
+  --success: #28a745;
+  --warning: #ffc107;
+  --info: #17a2b8;
+}
+
+/* Dark Theme */
+body.dark-mode {
+  --bg-primary: #1a1a1a;
+  --bg-secondary: #2d2d2d;
+  --text-primary: #ffffff;
+  --text-secondary: #adb5bd;
+  --border-color: #404040;
+  --card-bg: #2d2d2d;
+  --card-border: #404040;
+  --sidebar-bg: #2d2d2d;
+  --sidebar-text: #ffffff;
+  --sidebar-hover: #3d3d3d;
+  --sidebar-active: #4d9eff;
+  --primary: #4d9eff;
+  --primary-dark: #3a7bc8;
+  --danger: #fc8181;
+  --success: #48bb78;
+  --warning: #f6ad55;
+  --info: #63b3ed;
+}
+
+/* E-commerce Theme */
+body.ecommerce-mode {
+  --bg-primary: #f5f6fa;
+  --bg-secondary: #ffffff;
+  --text-primary: #2d3436;
+  --text-secondary: #636e72;
+  --border-color: #dfe6e9;
+  --card-bg: #ffffff;
+  --card-border: #e0e0e0;
+  --sidebar-bg: #ffffff;
+  --sidebar-text: #2d3436;
+  --sidebar-hover: #ff6b3520;
+  --sidebar-active: #ff6b35;
+  --primary: #ff6b35;
+  --primary-dark: #e55a2b;
+}
+
+/* Corporate Theme */
+body.corporate-mode {
+  --bg-primary: #f3f4f6;
+  --bg-secondary: #ffffff;
+  --text-primary: #111827;
+  --text-secondary: #6b7280;
+  --border-color: #e5e7eb;
+  --card-bg: #ffffff;
+  --card-border: #e5e7eb;
+  --sidebar-bg: #1e3a8a;
+  --sidebar-text: #ffffff;
+  --sidebar-hover: #1e40af;
+  --sidebar-active: #3b82f6;
+  --primary: #1a56db;
+  --primary-dark: #1e40af;
+}
+
+/* Apply variables to elements */
+body {
+  background-color: var(--bg-primary);
+  color: var(--text-primary);
+  transition: all 0.3s ease;
+}
+
+.card {
+  background-color: var(--card-bg);
+  border: 1px solid var(--card-border);
+}
+
+.btn-primary {
+  background-color: var(--primary) !important;
+  border-color: var(--primary) !important;
+}
+
+.btn-primary:hover {
+  background-color: var(--primary-dark) !important;
+}
+
+.text-primary {
+  color: var(--primary) !important;
+}
+
+.bg-primary {
+  background-color: var(--primary) !important;
+}
+
+.border-primary {
+  border-color: var(--primary) !important;
+}

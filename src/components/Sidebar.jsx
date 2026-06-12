@@ -1,21 +1,10 @@
 import React from 'react';
 import { Nav } from 'react-bootstrap';
 import { Link, useLocation } from 'react-router-dom';
-import { 
-  FiHome, 
-  FiPackage, 
-  FiShoppingCart, 
-  FiUsers, 
-  FiBarChart2, 
-  FiSettings,
-  FiPlusCircle
-} from 'react-icons/fi';
-import { useTheme } from '../context/ThemeContext';
+import { FiHome, FiPackage, FiShoppingCart, FiUsers, FiBarChart2, FiSettings, FiPlusCircle } from 'react-icons/fi';
 
 const Sidebar = () => {
   const location = useLocation();
-  const { darkMode } = useTheme();
-
   const menuItems = [
     { path: '/dashboard', icon: <FiHome />, label: 'Dashboard' },
     { path: '/products', icon: <FiPackage />, label: 'Products' },
@@ -25,28 +14,22 @@ const Sidebar = () => {
     { path: '/analytics', icon: <FiBarChart2 />, label: 'Analytics' },
     { path: '/settings', icon: <FiSettings />, label: 'Settings' },
   ];
-
   return (
-    <div className="sidebar" style={{
+    <div style={{
       width: '260px',
-      background: darkMode ? '#2d2d2d' : '#ffffff',
-      borderRight: `1px solid ${darkMode ? '#404040' : '#dee2e6'}`,
-      minHeight: '100vh',
+      backgroundColor: 'var(--sidebar-bg)',
+      borderRight: '1px solid var(--border-color)',
       position: 'fixed',
       left: 0,
       top: 0,
-      paddingTop: '20px',
-      zIndex: 100
+      height: '100vh',
+      padding: '20px',
+      overflowY: 'auto'
     }}>
-      <div className="text-center mb-4 pb-3 border-bottom" style={{
-        borderBottomColor: darkMode ? '#404040' : '#dee2e6'
-      }}>
-        <h3 style={{ color: darkMode ? '#fff' : '#333' }}>
-        AdminHub
-        </h3>
-        <p className="small text-muted mb-0">E-Commerce Dashboard</p>
+      <div className="text-center mb-4 pb-3" style={{ borderBottom: '1px solid var(--border-color)' }}>
+        <h3 style={{ color: 'var(--sidebar-text)' }}>🛍️ AdminHub</h3>
+        <small style={{ color: 'var(--text-secondary)' }}>E-Commerce Dashboard</small>
       </div>
-      
       <Nav className="flex-column">
         {menuItems.map(item => (
           <Nav.Link
@@ -54,19 +37,17 @@ const Sidebar = () => {
             as={Link}
             to={item.path}
             style={{
-              color: location.pathname === item.path 
-                ? '#0d6efd' 
-                : (darkMode ? '#fff' : '#333'),
-              backgroundColor: location.pathname === item.path 
-                ? (darkMode ? '#404040' : '#e7f1ff')
-                : 'transparent',
-              margin: '5px 15px',
+              display: 'flex',
+              alignItems: 'center',
+              gap: '12px',
+              padding: '10px 15px',
+              margin: '4px 0',
               borderRadius: '8px',
-              padding: '12px 15px',
-              transition: 'all 0.2s'
+              color: location.pathname === item.path ? 'var(--sidebar-active)' : 'var(--sidebar-text)',
+              backgroundColor: location.pathname === item.path ? 'var(--sidebar-hover)' : 'transparent'
             }}
           >
-            <span style={{ marginRight: '12px', fontSize: '18px' }}>{item.icon}</span>
+            {item.icon}
             {item.label}
           </Nav.Link>
         ))}
@@ -74,5 +55,4 @@ const Sidebar = () => {
     </div>
   );
 };
-
 export default Sidebar;

@@ -68,28 +68,19 @@ const Login = () => {
                     E-Commerce Management System
                   </p>
                 </div>
-
-                {/* Error Message */}
                 {error && (
                   <Alert variant="danger">
                     {error}
                   </Alert>
                 )}
-
-                {/* Login Form */}
                 <Form onSubmit={handleSubmit}>
-
-                  {/* Email Field */}
                   <Form.Group className="mb-3">
                     <Form.Label>Email Address</Form.Label>
-
                     <div className="position-relative">
-
                       <FiMail
                         className="position-absolute top-50 start-0 translate-middle-y ms-3 text-muted"
                         style={{ zIndex: 10 }}
                       />
-
                       <Form.Control
                         type="email"
                         placeholder="Enter email address"
@@ -102,7 +93,6 @@ const Login = () => {
                   </Form.Group>
                   <Form.Group className="mb-4">
                     <Form.Label>Password</Form.Label>
-
                     <div className="position-relative">
                       <FiLock
                         className="position-absolute top-50 start-0 translate-middle-y ms-3 text-muted"
@@ -136,9 +126,7 @@ const Login = () => {
                   >
                     Login to Dashboard
                   </Button>
-
                 </Form>
-
               </Card.Body>
             </Card>
           </Col>

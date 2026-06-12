@@ -37,8 +37,6 @@ const AddProduct = () => {
         rating: 0,
         thumbnail: formData.image
       };
-      
-      // Save to localStorage
       const existingProducts = JSON.parse(localStorage.getItem('adminProducts') || '[]');
       const updatedProducts = [newProduct, ...existingProducts];
       localStorage.setItem('adminProducts', JSON.stringify(updatedProducts));
@@ -51,7 +49,7 @@ const AddProduct = () => {
     }
   };
 
-  const categories = ['Electronics', 'Clothing', 'Books', 'Home', 'Sports', 'Toys'];
+  const categories = ['Electronics', 'Clothing', 'Books', 'Home', 'Sports', 'Toys', 'Beauty', 'Fragnances', 'Laptops', 'Furniture', 'Groceries', 'Home-decoration', 'Kitchen-accessories', 'Mens-shirts', 'Mens-shoes', 'Mens-watches', 'Mobile-accessories'];
 
   return (
     <Container>

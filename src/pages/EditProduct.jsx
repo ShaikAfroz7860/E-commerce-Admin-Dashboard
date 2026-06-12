@@ -110,7 +110,6 @@ const EditProduct = () => {
                 </Form.Group>
               </Col>
             </Row>
-
             <Form.Group className="mb-3">
               <Form.Label>Image URL</Form.Label>
               <Form.Control
@@ -120,7 +119,6 @@ const EditProduct = () => {
                 required
               />
             </Form.Group>
-
             <Form.Group className="mb-3">
               <Form.Label>Description</Form.Label>
               <Form.Control

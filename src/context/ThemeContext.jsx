@@ -1,37 +1,46 @@
-import React, { createContext, useContext, useState, useEffect } from 'react';
+import React, { createContext, useContext, useState, useEffect, useCallback } from 'react';
 
 const ThemeContext = createContext();
 
 export const useTheme = () => {
   const context = useContext(ThemeContext);
-  if (!context) {
-    throw new Error('useTheme must be used within ThemeProvider');
-  }
+  if (!context) throw new Error('useTheme must be used within ThemeProvider');
   return context;
 };
 
 export const ThemeProvider = ({ children }) => {
-  const [darkMode, setDarkMode] = useState(() => {
-    const saved = localStorage.getItem('adminDarkMode');
-    return saved === 'true';
+  const [currentTheme, setCurrentTheme] = useState(() => {
+    const savedTheme = localStorage.getItem('ecommerce_admin_theme');
+    return savedTheme || 'light';
   });
-
   useEffect(() => {
-    if (darkMode) {
-      document.body.classList.add('dark-mode');
-      localStorage.setItem('adminDarkMode', 'true');
-    } else {
-      document.body.classList.remove('dark-mode');
-      localStorage.setItem('adminDarkMode', 'false');
+    document.body.classList.remove('dark-mode', 'ecommerce-mode', 'corporate-mode');
+    if (currentTheme !== 'light') {
+      document.body.classList.add(`${currentTheme}-mode`);
     }
-  }, [darkMode]);
+    localStorage.setItem('ecommerce_admin_theme', currentTheme);
+    
+    console.log('Theme changed to:', currentTheme);
+    
+  }, [currentTheme]);
 
-  const toggleTheme = () => {
-    setDarkMode(!darkMode);
-  };
+  const switchTheme = useCallback((themeId) => {
+    setCurrentTheme(themeId);
+  }, []);
+
+  const themes = [
+    { id: 'light', name: 'Light', icon: '☀️' },
+    { id: 'dark', name: 'Dark', icon: '🌙' },
+    { id: 'ecommerce', name: 'E-commerce', icon: '🛍️' },
+    { id: 'corporate', name: 'Corporate', icon: '🏢' },
+  ];
 
   return (
-    <ThemeContext.Provider value={{ darkMode, toggleTheme }}>
+    <ThemeContext.Provider value={{
+      theme: { id: currentTheme, name: themes.find(t => t.id === currentTheme)?.name || 'Light' },
+      themes,
+      switchTheme,
+    }}>
       {children}
     </ThemeContext.Provider>
   );
